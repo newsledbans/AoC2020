@@ -24,7 +24,6 @@ func day(input []byte) {
 
 		// skip passports that don't contain enough data
 		if len(data) < 6 {
-			fmt.Println("skipped < 6", "\n")
 			continue
 		}
 
