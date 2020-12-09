@@ -102,7 +102,7 @@ func check(e error) {
 }
 
 func main() {
-	dat, err := ioutil.ReadFile("09.txt")
+	dat, err := ioutil.ReadFile("inputs/09.txt")
 	check(err)
 	day(dat)
 
