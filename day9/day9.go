@@ -12,22 +12,26 @@ var inArr []string
 func day(input []byte) {
 
 	inArr := strings.Fields(string(input))
-
 	p2Target := 0
+	pre := 25
 
 	for i, intCh := range inArr {
-		ok := false
-		if i < 25 {
+		if i < pre {
 			continue
 		}
-		hi := i - 1
-		lo := i - 25
+
+		ok := false
 		intTarget := castStoI(intCh)
-		for j := lo; j < hi; j++ {
-			for k := j + 1; k <= hi; k++ {
-				if intTarget == castStoI(inArr[j])+castStoI(inArr[k]) {
+
+		for j, first := range inArr[i-pre : i] {
+			for _, second := range inArr[j+1 : i] {
+				if intTarget == castStoI(first)+castStoI(second) {
 					ok = true
+					break
 				}
+			}
+			if ok {
+				break
 			}
 		}
 		if !ok {
@@ -37,8 +41,7 @@ func day(input []byte) {
 		}
 
 	}
-
-	// var working []int
+	// loops for part 2
 	var sum int
 	for j := 0; j < len(inArr); j++ {
 		for k := j + 1; k <= len(inArr); k++ {
