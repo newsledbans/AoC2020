@@ -16,9 +16,23 @@ func castStoI(s string) int {
 
 func main() {
 
-	instr := "acc -1"
-	inInt := castStoI(instr[4:])
-	fmt.Println(inInt)
+	dirMap := map[int]string{0: "E", 1: "S", 2: "W", 3: "N"}
+	facing := 0
+	line := "F99"
+	if line[0] == 'F' {
+		fmt.Println(dirMap[facing] + line[1:])
+	}
+
+	// directions := [][]int{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}}
+	// for _, dir := range directions {
+	// 	for x, y := range dir {
+	// 		fmt.Println(x, y)
+	// 	}
+	// }
+
+	// instr := "acc -1"
+	// inInt := castStoI(instr[4:])
+	// fmt.Println(inInt)
 
 	// var bagMap = make(map[string]map[string]int)
 	// bagMap["shinygold"] = map[string]int{}
