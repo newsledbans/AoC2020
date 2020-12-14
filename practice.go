@@ -2,7 +2,12 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"math/big"
 	"strconv"
+	"strings"
+
+	aocu "github.com/newsledbans/aoc2020/aocutils"
 )
 
 func castStoI(s string) int {
@@ -16,12 +21,28 @@ func castStoI(s string) int {
 
 func main() {
 
-	dirMap := map[int]string{0: "E", 1: "S", 2: "W", 3: "N"}
-	facing := 0
-	line := "F99"
-	if line[0] == 'F' {
-		fmt.Println(dirMap[facing] + line[1:])
+	dat, _ := ioutil.ReadFile("inputs/13.txt")
+	busArr := strings.Split(string(dat), "\n")
+	var busses []aocu.CrtEntry
+	for i, bus := range strings.Split(busArr[1], ",") {
+		busNum, err := strconv.Atoi(bus)
+		if err != nil {
+			// fmt.Println(i, bus)
+			continue
+		}
+		busses = append(busses, aocu.CrtEntry{A: big.NewInt(int64(busNum - i)), N: big.NewInt(int64(busNum))})
+
 	}
+	fmt.Println(aocu.SolveCrtMany(busses).String())
+	// var waypoint = complex(10, 1)
+	// rotation := map[int]complex128{0: 1 + 0i, 1: 0 - 1i, 2: -1 + 0i, 3: 0 + 1i}
+
+	// dirMap := map[int]string{0: "E", 1: "S", 2: "W", 3: "N"}
+	// facing := 0
+	// line := "F99"
+	// if line[0] == 'F' {
+	// 	fmt.Println(dirMap[facing] + line[1:])
+	// }
 
 	// directions := [][]int{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}}
 	// for _, dir := range directions {
