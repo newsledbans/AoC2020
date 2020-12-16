@@ -44,32 +44,14 @@ func day(input []byte) {
 	}
 	timestamp := aocu.SolveCrtMany(busses).String()
 
-	// timestamp := 523 + 547 + 47 + 37 + 29 + 23 + 19 + 17 + 13
-	// for {
-	// 	skip := 1
-	// 	valid := true
-	// 	for offset, bus := range busses {
-	// 		if (timestamp+offset)%bus != 0 {
-	// 			valid = false
-	// 			break
-	// 		}
-	// 		skip *= bus
-	// 	}
-	// 	if valid {
-	// 		break
-	// 	}
-	// 	timestamp += skip
-	// }
-	// fmt.Println("CRT method", crt(busses))
-
 	// FAILED PART TWO, WORKS FOR TEST CASES NOT FOR LARGE INPUT
 	// for n := 1; n < 100000000000000; {
-	// 	targetTime := buses[biggestBus]*n - biggestBus
+	// 	targetTime := busses[0]
 	// 	counter := 0
 	// 	for offset, bus := range buses {
 	// 		if (targetTime+offset)%bus != 0 {break}
 	// 		counter++}
-	// 	if counter == len(buses) {
+	// 	if counter == len(busses) {
 	// 		fmt.Println("SUCCESS!", targetTime)
 	// 		break}
 	// 	n++ }
@@ -77,41 +59,6 @@ func day(input []byte) {
 	fmt.Println("part1:", nextD*busID)
 	fmt.Println("part2:", timestamp)
 }
-
-// func crt(arr map[int]int) int {
-// 	// Compute product of all numbers
-// 	var prod, result = 1, 0
-// 	for _, val := range arr {
-// 		prod = prod * val
-// 	}
-// 	for i, val := range arr {
-// 		pp := prod / val
-// 		result = result + i*modInverse(pp, val)*pp
-// 		// fmt.Println("modInverse", prod, pp, val)
-// 	}
-// 	return result % prod
-// }
-// func modInverse(a, m int) int {
-// 	m0, x0, x1 := m, 0, 1
-
-// 	if m == 1 {
-// 		return 0
-// 	}
-// 	for a > 1 {
-// 		q := a / m
-// 		t := m
-
-// 		m = a % m
-// 		a = t
-// 		t = x0
-// 		x0 = x1 - q*x0
-// 		x1 = t
-// 	}
-// 	if x1 < 0 {
-// 		x1 = x1 + m0
-// 	}
-// 	return x1
-// }
 
 func main() {
 	dat, _ := ioutil.ReadFile("inputs/13.txt")

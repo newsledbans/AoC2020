@@ -44,8 +44,9 @@ func Check(e error) {
 }
 
 // This file is for stuff related to the chinese remainder theorem!
+// borrowed from https://github.com/deanveloper/modmath
 
-// Solves x=a mod m; x=b mod n by using the chinese remainder theorem.
+// SolveCrt x=a mod m; x=b mod n by using the chinese remainder theorem.
 func SolveCrt(a, m, b, n *big.Int) *big.Int {
 	gcd := new(big.Int)
 	s := new(big.Int)
@@ -66,12 +67,12 @@ func SolveCrt(a, m, b, n *big.Int) *big.Int {
 	return eqn.Mod(eqn, eqn2)
 }
 
-// Represents an entry in the Extended Chinese Remainder Theorem
+// CrtEntry Represents an entry in the Extended Chinese Remainder Theorem
 type CrtEntry struct {
 	A, N *big.Int
 }
 
-// Solves the solution to x=(a1 mod m1); x=(a2 mod m2); x=...
+// SolveCrtMany the solution to x=(a1 mod m1); x=(a2 mod m2); x=...
 //
 // If len(eqs) == 0, it panics.
 func SolveCrtMany(eqs []CrtEntry) *big.Int {
