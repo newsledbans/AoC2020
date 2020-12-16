@@ -23,7 +23,6 @@ func day(input []byte) {
 			consider = valint
 			continue
 		}
-		// order = append(order, valint)
 		i2 := i + 1
 		spoken[valint] = &i2
 	}
@@ -36,7 +35,6 @@ func day(input []byte) {
 		} else {
 			newConsider = &zero
 		}
-		// order = append(order, consider)
 		if j == finalNum {
 			fmt.Println(consider)
 			break
