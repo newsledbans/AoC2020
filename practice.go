@@ -2,38 +2,57 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"math/big"
-	"strconv"
 	"strings"
-
-	aocu "github.com/newsledbans/aoc2020/aocutils"
 )
 
-func castStoI(s string) int {
-	// converts string to an int, returns 0 if err
-	int64, err := strconv.Atoi(s)
-	if err != nil {
-		return 0
-	}
-	return int(int64)
+type cube struct {
+	x, y, z int
 }
+
+func newCube(x, y, z int) cube {
+	c := cube{x, y, z}
+	return c
+}
+
+type void struct{}
+
+var on = void{}
 
 func main() {
 
-	dat, _ := ioutil.ReadFile("inputs/13.txt")
-	busArr := strings.Split(string(dat), "\n")
-	var busses []aocu.CrtEntry
-	for i, bus := range strings.Split(busArr[1], ",") {
-		busNum, err := strconv.Atoi(bus)
-		if err != nil {
-			// fmt.Println(i, bus)
-			continue
-		}
-		busses = append(busses, aocu.CrtEntry{A: big.NewInt(int64(busNum - i)), N: big.NewInt(int64(busNum))})
+	// dat, _ := ioutil.ReadFile("inputs/13.txt")
+	inArr := strings.Split(
+		`.#.
+..#
+###`, "\n")
 
+	cubes := make(map[cube]void)
+	for x, row := range inArr {
+		for y, val := range row {
+			if val == '#' {
+				cubes[newCube(x, y, 0)] = on
+			}
+		}
 	}
-	fmt.Println(aocu.SolveCrtMany(busses).String())
+	fmt.Println(cubes)
+
+	if _, ok := cubes[newCube(2, 1+1, 0)]; ok {
+		fmt.Println("success")
+	}
+	cubes = make(map[cube]void)
+	fmt.Println("after reinstantiating", cubes)
+
+	// var busses []aocu.CrtEntry
+	// for i, bus := range strings.Split(busArr[1], ",") {
+	// 	busNum, err := strconv.Atoi(bus)
+	// 	if err != nil {
+	// 		// fmt.Println(i, bus)
+	// 		continue
+	// 	}
+	// 	busses = append(busses, aocu.CrtEntry{A: big.NewInt(int64(busNum - i)), N: big.NewInt(int64(busNum))})
+
+	// }
+	// fmt.Println(aocu.SolveCrtMany(busses).String())
 	// var waypoint = complex(10, 1)
 	// rotation := map[int]complex128{0: 1 + 0i, 1: 0 - 1i, 2: -1 + 0i, 3: 0 + 1i}
 
