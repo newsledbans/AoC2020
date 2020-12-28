@@ -17,11 +17,10 @@ func day2(input []byte) int {
 	inArray := bytes.Split(input, []byte("\n"))
 	for _, value := range inArray {
 		minmax := reNum.FindAll(value, -1)
+
 		password := rePass.FindAll(value, -1)
-		fmt.Println(string(minmax[0]), string(minmax[1]))
-		fmt.Println(string(password[0]), string(password[1]))
 		count := bytes.Count(password[1], password[0])
-		fmt.Println("count: ", count)
+
 		if count >= castBtoI(minmax[0]) && count <= castBtoI(minmax[1]) {
 			goodPass++
 		}
@@ -42,7 +41,7 @@ func check(e error) {
 }
 
 func main() {
-	dat, err := ioutil.ReadFile("02.txt")
+	dat, err := ioutil.ReadFile("inputs/02.txt")
 	check(err)
 	answer := day2(dat)
 	fmt.Println(answer)
