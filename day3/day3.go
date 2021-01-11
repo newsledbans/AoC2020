@@ -40,10 +40,12 @@ func day3(input []byte) {
 	finalResult := 1
 
 	for j, rslt := range results {
-		fmt.Println("Case:", j+1, "=", rslt)
+		if j == 1 {
+			fmt.Println("Part1:", rslt)
+		}
 		finalResult *= rslt
 	}
-	fmt.Println("Product:", finalResult)
+	fmt.Println("Part2:", finalResult)
 
 }
 
@@ -60,7 +62,7 @@ func check(e error) {
 }
 
 func main() {
-	dat, err := ioutil.ReadFile("03.txt")
+	dat, err := ioutil.ReadFile("inputs/03.txt")
 	check(err)
 	day3(dat)
 
