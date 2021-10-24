@@ -2,7 +2,6 @@
 
 import fileinput
 import re
-import os
 
 prefix = r"/Users/benwanless/Projects/AoC2020/"
 
